@@ -62,6 +62,7 @@ h1 {
 	flex: 0 1 30%;
 	padding-bottom: 30%;
 	margin-top: 2em;
+	transition: background-color 0.6s;
 }
 
 .square:hover {
@@ -74,6 +75,7 @@ h1 {
 	padding-bottom: 30%;
 	margin-top: 2em;
 	background-color: transparent !important;
+	transition: background-color 0.6s;
 }
 
 .square-fail:hover {
