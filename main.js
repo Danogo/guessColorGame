@@ -1,21 +1,21 @@
-//============= Dom holders =================
+//============= Variables ===================
+//difficulty level
+var mode = 'hard';
+//array with colors for tabs
+var colors;
+//color which user need to guess
+var colorToGuess;
+
+//============= DOM holders =================
 var tabs = document.querySelectorAll('.square');
 var colorToGuessEl = document.querySelector('#colorToGuess');
 var result = document.querySelector('.resultInfo');
 var resetBtn = document.querySelector('button[class~=reset]');
 var hardBtn = document.querySelector('button[class~=hard]');
 var easyBtn = document.querySelector('button[class~=easy]');
-var mode = 'hard';
 
 //============= Initial setup =================
-//set array with colors for tabs
-var colors = generateRanCol(6);
-//set color to guess
-var colorToGuess = getColorToGuess();
-//display color which user need to guess
-colorToGuessEl.textContent = colorToGuess;
-//display tabs
-setTabs();
+resetGame();
 
 //============= Event Handlers =================
 //handler for click event on resetBtn
@@ -35,6 +35,24 @@ easyBtn.addEventListener('click', function() {
 });
 
 //============= Functions =================
+//reset game setup
+function resetGame() {
+	//set array with colors for tabs
+	if (mode === 'easy') {
+		colors = generateRanCol(3);
+	} else {
+		colors = generateRanCol(6);
+	}
+	//set color to guess
+	colorToGuess = getColorToGuess();
+	//display color which user need to guess
+	colorToGuessEl.textContent = colorToGuess;
+	//set and display tabs
+	setTabs();
+	result.textContent = '';
+	colorToGuessEl.style.color = '#000000';
+}
+
 //add background color and event listener for every square
 function setTabs() {
 	var numTabs;
@@ -64,7 +82,7 @@ function setTabs() {
 				changeColors(clickedColor);
 			} else {
 				//otherwise display another message and make clicked square transparent
-				result.textContent = 'Wrong!';
+				result.textContent = 'Try again..';
 				result.classList.remove('resultinfo--correct');
 				result.classList.add('resultinfo--wrong');
 				this.className = 'square-fail';
@@ -96,20 +114,6 @@ function changeColors(color) {
 		tabs[i].className = 'square';
 		tabs[i].style.backgroundColor = color;
 	}
-}
-
-//reset game setup
-function resetGame() {
-	if (mode === 'easy') {
-		colors = generateRanCol(3);
-	} else {
-		colors = generateRanCol(6);
-	}
-	colorToGuess = getColorToGuess();
-	colorToGuessEl.textContent = colorToGuess;
-	setTabs();
-	result.textContent = '';
-	colorToGuessEl.style.color = '#000000';
 }
 
 //mark current mode

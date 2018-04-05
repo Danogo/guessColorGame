@@ -43,6 +43,11 @@ h1 {
 	background-color: #EEEEEE;
 }
 
+.btn:focus {
+	outline: none;
+	box-shadow: 0 10px 6px -6px #777;
+}
+
 .modes {
 	display: flex;
 }
@@ -62,7 +67,6 @@ h1 {
 .resultinfo--wrong {
 	color: #F58787;
 }
-
 
 .tabs, .container {
 	margin: 0 auto;
@@ -84,11 +88,13 @@ h1 {
 	padding-bottom: 30%;
 	margin-top: 2em;
 	transition: background-color 0.6s;
+	border: none;
 }
 
-.square:hover {
+.square:hover, .square:focus, .square-fail:focus {
 	box-shadow: 0 10px 6px -6px #777;
 	cursor: pointer;
+	outline: none;
 }
 
 .square-fail {
@@ -97,6 +103,7 @@ h1 {
 	margin-top: 2em;
 	background-color: transparent !important;
 	transition: background-color 0.6s;
+	border: none;
 }
 
 .square-fail:hover {
