@@ -33,6 +33,29 @@ easyBtn.addEventListener('click', function() {
 	markMode();
 	resetGame();
 });
+//add event listener for every square
+for (var i = 0; i < tabs.length; i++) {
+	tabs[i].addEventListener('click', function() {
+		//set clickedColor to clicked tab's background color
+		var clickedColor = this.style.backgroundColor;
+		//if clicked color matches color we're looking for
+		if (clickedColor == colorToGuess) {
+			//display proper information and change all tabs background to that color
+			result.textContent = 'Correct!';
+			result.classList.remove('resultinfo--wrong');
+			result.classList.add('resultinfo--correct');
+			colorToGuessEl.style.color = clickedColor;
+			changeColors(clickedColor);
+		} else {
+			//otherwise display another message and make clicked square transparent
+			result.textContent = 'Try again..';
+			result.classList.remove('resultinfo--correct');
+			result.classList.add('resultinfo--wrong');
+			this.className = 'square-fail';
+			this.disabled = true;
+		}
+	});
+}
 
 //============= Functions =================
 //reset game setup
@@ -53,7 +76,7 @@ function resetGame() {
 	colorToGuessEl.style.color = '#000000';
 }
 
-//add background color and event listener for every square
+//set display and background color for every tab
 function setTabs() {
 	var numTabs;
 	if (mode === 'easy') {
@@ -68,26 +91,9 @@ function setTabs() {
 		}
 	}
 	for (var i = 0; i < numTabs; i++) {
+		tabs[i].className = 'square';
+		tabs[i].disabled = false;
 		tabs[i].style.backgroundColor = colors[i];
-		tabs[i].addEventListener('click', function() {
-			//set clickedColor to clicked tab's background color
-			var clickedColor = this.style.backgroundColor;
-			//if clicked color matches color we're looking for
-			if (clickedColor == colorToGuess) {
-				//display proper information and change all tabs background to that color
-				result.textContent = 'Correct!';
-				result.classList.remove('resultinfo--wrong');
-				result.classList.add('resultinfo--correct');
-				colorToGuessEl.style.color = clickedColor;
-				changeColors(clickedColor);
-			} else {
-				//otherwise display another message and make clicked square transparent
-				result.textContent = 'Try again..';
-				result.classList.remove('resultinfo--correct');
-				result.classList.add('resultinfo--wrong');
-				this.className = 'square-fail';
-			}
-		});
 	}
 }
 

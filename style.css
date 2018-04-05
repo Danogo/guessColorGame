@@ -91,9 +91,13 @@ h1 {
 	border: none;
 }
 
-.square:hover, .square:focus, .square-fail:focus {
+.square:hover, .square:focus {
 	box-shadow: 0 10px 6px -6px #777;
 	cursor: pointer;
+	outline: none;
+}
+
+.square-fail:focus {
 	outline: none;
 }
 
