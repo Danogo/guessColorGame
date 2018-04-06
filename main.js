@@ -10,9 +10,9 @@ var colorToGuess;
 var tabs = document.querySelectorAll('.square');
 var colorToGuessEl = document.querySelector('#colorToGuess');
 var result = document.querySelector('.resultInfo');
-var resetBtn = document.querySelector('button[class~=reset]');
-var hardBtn = document.querySelector('button[class~=hard]');
-var easyBtn = document.querySelector('button[class~=easy]');
+var resetBtn = document.querySelector('button[class~="reset"]');
+var hardBtn = document.querySelector('button[class~="hard"]');
+var easyBtn = document.querySelector('button[class~="easy"]');
 
 //============= Initial setup =================
 resetGame();
